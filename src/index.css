@@ -1,8 +1,6 @@
-@import "tailwindcss";
-:root {
-  --color-text: #fff;
-  --color-primary: #576cbc;
-  --color-secondary: #19376d;
-  --color-dark: #0b2447;
-  --color-bg: #04152d;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Oufit", Arial, Arial, Helvetica, sans-serif;
 }
