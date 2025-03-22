@@ -1,11 +1,10 @@
-import React from "react";
 import { getImageUrl } from "../utils";
 import styles from "./Hero.module.css";
 import { Roles } from "./Roles";
 
 export const Hero = () => {
   return (
-    <section className={styles.container}>
+    <section className="relative flex items-center justify-between mt-49 z-10 ml-[10%] mr-[10%]">
       <div className={styles.content}>
         <h1 className={styles.title}>
           Hola somos REnergy by:<Roles></Roles>
