@@ -74,7 +74,7 @@
             [[59]]
           ],
           "id": "840",
-          "properties": { "name": "United States of America" }
+          "properties": { "name": "United States" }
         },
         {
           "type": "Polygon",
@@ -274,7 +274,7 @@
           "type": "Polygon",
           "arcs": [[-196, -206, 206, 207, 208, 209, 210]],
           "id": "170",
-          "properties": { "name": "Colombia#3", "energia": "25%" }
+          "properties": { "name": "Colombia"}
         },
         {
           "type": "Polygon",

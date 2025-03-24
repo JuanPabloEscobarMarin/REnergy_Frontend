@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./WorldMap.module.css";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css"; // Importa el CSS de react-tooltip
@@ -7,8 +7,6 @@ import {
   ComposableMap,
   Geographies,
   Geography,
-  Marker,
-  Annotation,
   ZoomableGroup,
 } from "react-simple-maps";
 
@@ -16,11 +14,40 @@ const geoUrl = "/src/components/world.json";
 
 export const WorldMap = () => {
   const [content, setContent] = useState("");
+  const [energyCountry, setEnergyCountry] = useState(null);
+  const [energyType, setEnergyType] = useState("renewablesPercentage");
+  const [year, setYear] = useState(2023);
+  const [countryName, setCountryName] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState({
+    solarCapacity: 100,
+    renewablesPercentage: 300
+  });
+
+  const getData = () => {
+    setIsLoading(true);
+    fetch(`http://localhost:8080/energy-data/${year}/${countryName}`)
+      .then((res) => res.json().then((json) => setData(json)))
+      .finally(() => setIsLoading(false));
+  }
+
+  useEffect(() => {
+    getData();
+    console.log(data[energyType]);
+  }, [countryName])
 
   return (
     <div className={styles.contenedor}>
-      <h1>Mapa Titulo</h1>
-      <Tooltip id="my-tooltip" content={content} />
+      <select onChange={(e) => setYear(e.target.value)}>
+        <option value="2023">2023</option>
+        <option value="2020">2020</option>
+      </select>
+
+      <select onChange={(e) => setEnergyType(e.target.value)}>
+        <option value="renewablesPercentage">Porcentaje de energia renovable</option>
+        <option value="solarCapacity">Capacidad energia solar instalada</option>
+      </select>
+      <Tooltip id="my-tooltip" content={isLoading ? "Loading..." : `nombre: ${data.name}, energy type: ${energyType}, data: ${data[energyType]}`} />
       <div className={styles.mapa}>
         <ComposableMap>
           <ZoomableGroup zoom={1}>
@@ -32,10 +59,10 @@ export const WorldMap = () => {
                     geography={geo}
                     onMouseEnter={() => {
                       const { name } = geo.properties;
-                      setContent(`${name}`);
+                      setCountryName(name);
                     }}
                     onMouseLeave={() => {
-                      setContent("");
+                      setEnergyCountry(null)
                     }}
                     style={{
                       hover: {
