@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@theme {
+  --animate-cursor: blink 0.7s infinite;
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+}

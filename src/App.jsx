@@ -1,20 +1,11 @@
-import { Navbar } from "./components/Navbar";
-import { Hero } from "./components/Hero";
-import { About } from "./components/About";
-import { WorldMap } from "./components/WorldMap";
-import { Contactanos } from "./components/Contactanos";
-import { Gallery } from "./components/Gallery";
+import { BaseLayout } from "./layouts/BaseLayout";
+import { MainSection } from "./components/MainSection";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Hero />
-      <About />
-      <WorldMap />
-      <Gallery/>
-      <Contactanos/>
-    </div>
+    <BaseLayout>
+      <MainSection />
+    </BaseLayout>
   );
 }
 

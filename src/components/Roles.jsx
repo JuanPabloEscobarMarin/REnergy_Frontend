@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Roles.module.css";
 
 export const Roles = () => {
   const [text, setText] = useState("");
@@ -49,9 +48,9 @@ export const Roles = () => {
   }, [text, isDeleting, currentRoleIndex]);
 
   return (
-    <div className={styles.title}>
-      <span>{text}</span>
-      <span className={styles.cursor}>|</span> {/* Cursor parpadeante */}
+    <div className="text-5xl sm:text-7xl">
+      <span className="bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text font-extrabold">{text}</span>
+      <span className="inline-block ml-2 animate-cursor">|</span>
     </div>
   );
 };
