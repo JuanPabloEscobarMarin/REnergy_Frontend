@@ -1,8 +1,8 @@
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
-import { Contact } from "./components/Contact";
 import { WorldMap } from "./components/WorldMap";
+import { Contactanos } from "./components/Contactanos";
 function App() {
   return (
     <div>
@@ -10,7 +10,7 @@ function App() {
       <Hero />
       <About />
       <WorldMap />
-      <Contact />
+      <Contactanos />
     </div>
   );
 }
