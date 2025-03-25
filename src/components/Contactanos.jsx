@@ -1,4 +1,3 @@
-import React from "react";
 import { FaPhone, FaEnvelope, FaUser, FaLinkedin } from "react-icons/fa";
 import styles from "./Contactanos.module.css";
 

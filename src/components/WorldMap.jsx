@@ -37,7 +37,7 @@ export const WorldMap = () => {
   }, [countryName])
 
   return (
-    <div className={styles.contenedor}>
+    <div className="h-screen">
       <select onChange={(e) => setYear(e.target.value)}>
         <option value="2023">2023</option>
         <option value="2020">2020</option>
@@ -46,6 +46,7 @@ export const WorldMap = () => {
       <select onChange={(e) => setEnergyType(e.target.value)}>
         <option value="renewablesPercentage">Porcentaje de energia renovable</option>
         <option value="solarCapacity">Capacidad energia solar instalada</option>
+        <option value="biofuelsProductionTWh">Opcion 3</option>
       </select>
       <Tooltip id="my-tooltip" content={isLoading ? "Loading..." : `nombre: ${data.name}, energy type: ${energyType}, data: ${data[energyType]}`} />
       <div className={styles.mapa}>
