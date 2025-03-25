@@ -1,0 +1,67 @@
+/* Contenedor principal de la galería */
+.gallery-container {
+  margin: 3rem 0; /* Márgenes superior e inferior */
+  padding: 1rem; /* Espaciado interno */
+  gap: 15px;
+}
+
+/* Imagen principal */
+.featured-image {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 350px; /* Altura fija para la imagen principal */
+  object-fit: cover; /* Mantiene la proporción de la imagen */
+  display: block;
+  margin: 0 auto 1rem; /* Agrega un margen inferior de 1rem */
+  border-radius: 15px; /* Bordes redondeados */
+}
+
+/* Contenedor de las miniaturas */
+.grid {
+  display: grid;
+  gap: 1rem; /* Espaciado entre las imágenes */
+}
+
+/* Miniaturas de la galería */
+.gallery-thumbnail {
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-thumbnail:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+/* Diseño responsive */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+  }
+
+  .featured-image {
+    height: 300px; /* Reduce la altura de la imagen principal */
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
+  }
+
+  .featured-image {
+    height: 250px; /* Reduce aún más la altura de la imagen principal */
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
+  }
+
+  .featured-image {
+    height: 200px; /* Altura más pequeña para pantallas móviles */
+  }
+}
+
+
