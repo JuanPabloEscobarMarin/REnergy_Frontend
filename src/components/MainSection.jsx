@@ -2,6 +2,7 @@ import { About } from "./About";
 import { Hero } from "./Hero";
 import { WorldMap } from "./WorldMap";
 import { Contactanos } from "./Contactanos";
+import { Gallery } from "./Gallery";
 
 export function MainSection() {
   return (
@@ -9,6 +10,7 @@ export function MainSection() {
       <Hero />
       <About />
       <WorldMap />
+      <Gallery />
       <Contactanos />
     </div>
   )
