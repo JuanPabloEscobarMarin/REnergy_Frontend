@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./WorldMap.module.css";
 import { Tooltip } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css"; // Importa el CSS de react-tooltip
+import "react-tooltip/dist/react-tooltip.css";
 
 import {
   ComposableMap,
@@ -20,35 +20,73 @@ export const WorldMap = () => {
   const [countryName, setCountryName] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({
-    solarCapacity: 100,
-    renewablesPercentage: 300
+    solarCapacity: null,
+    renewablesPercentage: null,
+    biofuelsProductionTWh: null,
+    electricitySolarTWh: null,
+    electricityWindTWh: null,
+    electricityHydroTWh: null,
+    biofuelsProductivityTWh: null,
+    name: "",
   });
 
   const getData = () => {
+    if (!countryName) return;
     setIsLoading(true);
     fetch(`http://localhost:8080/energy-data/${year}/${countryName}`)
-      .then((res) => res.json().then((json) => setData(json)))
+      .then((res) => res.json())
+      .then((json) => {
+        setData({
+          solarCapacity: json.solarCapacity,
+          renewablesPercentage: json.renewablesPercentage,
+          biofuelsProductionTWh: json.biofuelsProductionTWh,
+          electricitySolarTWh: json.electricitySolarTWh,
+          electricityWindTWh: json.electricityWindTWh,
+          electricityHydroTWh: json.electricityHydroTWh,
+          biofuelsProductivityTWh: json.biofuelsProductivityTWh,
+          name: json.name,
+        });
+      })
+      .catch((error) => console.error("Error fetching data:", error))
       .finally(() => setIsLoading(false));
-  }
+  };
 
   useEffect(() => {
     getData();
-    console.log(data[energyType]);
-  }, [countryName])
+  }, [countryName, year]);
 
   return (
-    <div className="h-screen">
-      <select onChange={(e) => setYear(e.target.value)}>
-        <option value="2023">2023</option>
-        <option value="2020">2020</option>
+    <div className={styles.contenedor}>
+      <select
+        onChange={(e) => setEnergyType(e.target.value)}
+        className={styles.dropdown}
+      >
+        <option value="renewablesPercentage">
+          Porcentaje de energía renovable
+        </option>
+        <option value="solarCapacity">
+          Capacidad de energía solar instalada
+        </option>
+        <option value="biofuelsProductionTWh">
+          Producción de biocombustibles (TWh)
+        </option>
+        <option value="electricitySolarTWh">Electricidad solar (TWh)</option>
+        <option value="electricityWindTWh">Electricidad eólica (TWh)</option>
+        <option value="electricityHydroTWh">
+          Electricidad hidroeléctrica (TWh)
+        </option>
+        <option value="biofuelsProductivityTWh">
+          Productividad de biocombustibles (TWh)
+        </option>
       </select>
-
-      <select onChange={(e) => setEnergyType(e.target.value)}>
-        <option value="renewablesPercentage">Porcentaje de energia renovable</option>
-        <option value="solarCapacity">Capacidad energia solar instalada</option>
-        <option value="biofuelsProductionTWh">Opcion 3</option>
-      </select>
-      <Tooltip id="my-tooltip" content={isLoading ? "Loading..." : `nombre: ${data.name}, energy type: ${energyType}, data: ${data[energyType]}`} />
+      <Tooltip
+        id="my-tooltip"
+        content={
+          isLoading
+            ? "Loading..."
+            : `nombre: ${data.name}, energy type: ${energyType}, data: ${data[energyType]}`
+        }
+      />
       <div className={styles.mapa}>
         <ComposableMap>
           <ZoomableGroup zoom={1}>
@@ -63,7 +101,7 @@ export const WorldMap = () => {
                       setCountryName(name);
                     }}
                     onMouseLeave={() => {
-                      setEnergyCountry(null)
+                      setEnergyCountry(null);
                     }}
                     style={{
                       hover: {
@@ -78,6 +116,21 @@ export const WorldMap = () => {
             </Geographies>
           </ZoomableGroup>
         </ComposableMap>
+      </div>
+      <div className={styles.sliderContainer}>
+        <div className={styles.sliderLabels}>
+          <span>1965</span>
+          <input
+            type="range"
+            min="1965"
+            max="2023"
+            value={year}
+            onChange={(e) => setYear(Number(e.target.value))}
+            className={styles.slider}
+          />
+          <span>2023</span>
+        </div>
+        <span className={styles.currentYear}>{year}</span>
       </div>
     </div>
   );
