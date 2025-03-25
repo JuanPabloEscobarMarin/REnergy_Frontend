@@ -18,7 +18,6 @@ export const Gallery = () => {
 
   return (
     <div className="gallery-container">
-      <span className="text-6xl font-bold text-[#40513B]">Galeria</span>
       {/* Imagen principal */}
       <div>
         <img
