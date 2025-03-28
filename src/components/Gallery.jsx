@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
-import './GalleryModule.css';
+import React, { useState } from "react";
+import "./GalleryModule.css";
+import Ev1 from "./evidencias/ev1.jpg";
+import Ev2 from "./evidencias/ev2.jpg";
+import Ev3 from "./evidencias/ev3.jpg";
+import Ev4 from "./evidencias/ev4.jpg";
+import Ev5 from "./evidencias/ev5.jpg";
 
 export const Gallery = () => {
   // Estado para la imagen principal
-  const [featuredImage, setFeaturedImage] = useState(
-    'https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg'
-  );
+  const [featuredImage, setFeaturedImage] = useState(Ev2);
 
   // Lista de imágenes de la galería
-  const galleryImages = [
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg',
-  ];
+  const galleryImages = [Ev1, Ev2, Ev3, Ev4, Ev5];
 
   return (
     <div className="gallery-container">
