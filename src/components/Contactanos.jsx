@@ -45,37 +45,36 @@ export const Contactanos = () => {
       foto: SergioGomezFoto,
     },
   ];
-
   return (
-    <div className="flex pb-10 gap-5">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 p-5 justify-center">
       {equipo.map((miembro, index) => (
         <div
           key={index}
-          class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm p-3"
+          className="w-full max-w-[350px] bg-white border border-gray-200 rounded-lg shadow-sm p-4"
         >
-          <div class="flex flex-col items-center">
+          <div className="flex flex-col items-center">
             <img
-              class="w-24 h-24 mb-3 rounded-full shadow-lg"
+              className="w-24 h-24 mb-3 rounded-full shadow-lg"
               src={miembro.foto}
               alt={miembro.nombre}
             />
-            <h5 class="mb-1 text-xl font-medium text-gray-900">
+            <h5 className="mb-1 text-xl font-medium text-gray-900">
               {miembro.nombre}
             </h5>
-            <span class="text-sm text-gray-500">
+            <span className="text-sm text-gray-500">
               Ing. Sistemas e Informatica
             </span>
 
-            <div class="flex mt-4 md:mt-6">
+            <div className="flex flex-wrap justify-center mt-4 gap-3">
               <a
                 href={miembro.linkedin}
-                class="inline-flex gap-2 items-center px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                className="inline-flex gap-2 items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
               >
                 <FaLinkedin /> LinkedIn
               </a>
               <a
-                href={miembro.email}
-                class="flex gap-2 justify-center items-center py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
+                href={`mailto:${miembro.email}`}
+                className="flex gap-2 justify-center items-center px-4 py-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
               >
                 <FaEnvelope />
                 {miembro.email}
