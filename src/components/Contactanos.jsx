@@ -77,7 +77,7 @@ export const Contactanos = () => {
                 className="flex gap-2 justify-center items-center px-4 py-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
               >
                 <FaEnvelope />
-                Email
+                {miembro.email}
               </a>
             </div>
           </div>
